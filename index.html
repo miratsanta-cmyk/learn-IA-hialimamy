@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA x Business — Cours Complet</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#0D0D0F;--s:#16161A;--s2:#1E1E24;--s3:#26262E;--bd:#2E2E38;--ink:#F0EFE8;--i2:#A8A5A0;--i3:#5A5860;--ac:#FF6B35;--a2:#FFB347;--gn:#3DDC84;--bl:#4DA6FF;--pu:#B06EFF;--pk:#FF6B9D;--r:14px;--rs:8px;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:4px;}
+#splash{position:fixed;inset:0;background:var(--bg);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;transition:opacity .6s;}
+#splash.hide{opacity:0;pointer-events:none;}
+.slo{font-family:'Syne',sans-serif;font-size:clamp(2rem,6vw,4rem);font-weight:800;background:linear-gradient(135deg,var(--ac),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;}
+.ssu{font-size:15px;color:var(--i2);margin-bottom:10px;max-width:480px;}
+.sfe{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:30px;}
+.sf{background:var(--s);border:1px solid var(--bd);border-radius:20px;padding:5px 13px;font-size:12px;color:var(--i2);}
+.sbt{background:linear-gradient(135deg,var(--ac),var(--a2));color:#fff;border:none;border-radius:50px;padding:15px 44px;font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;cursor:pointer;transition:.2s;}
+.sbt:hover{transform:scale(1.04);}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:265px;min-height:100vh;background:var(--s);border-right:1px solid var(--bd);position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:100;transition:transform .3s;}
+.sbl{padding:18px 20px;border-bottom:1px solid var(--bd);}
+.sbl span{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;background:linear-gradient(135deg,var(--ac),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sbl p{font-size:11px;color:var(--i3);margin-top:2px;}
+.sbp{padding:14px 20px;border-bottom:1px solid var(--bd);}
+.plb{font-size:11px;color:var(--i3);margin-bottom:7px;display:flex;justify-content:space-between;}
+.ptr{height:4px;background:var(--bd);border-radius:4px;overflow:hidden;}
+.pfi{height:100%;background:linear-gradient(90deg,var(--ac),var(--a2));border-radius:4px;transition:width .4s;}
+.snv{flex:1;overflow-y:auto;padding:8px 0;}
+.smt{padding:10px 20px 4px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--i3);}
+.sls{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;transition:.15s;font-size:13px;color:var(--i2);border-left:3px solid transparent;}
+.sls:hover{background:var(--s2);color:var(--ink);}
+.sls.active{background:var(--s2);color:var(--ac);border-left-color:var(--ac);}
+.sls.done{color:var(--gn);}
+.sfoo{padding:14px 20px;border-top:1px solid var(--bd);}
+.main{margin-left:265px;flex:1;}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(13,13,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);padding:12px 28px;display:flex;align-items:center;gap:16px;}
+.tbc{font-size:13px;color:var(--i3);}
+.tbc span{color:var(--ink);}
+.bsm{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:6px 14px;font-size:12px;color:var(--i2);cursor:pointer;font-family:'Outfit',sans-serif;transition:.15s;margin-left:auto;}
+.bsm:hover{color:var(--ink);}
+.lesson{display:none;max-width:820px;margin:0 auto;padding:36px 28px 100px;}
+.lesson.active{display:block;animation:fi .3s ease;}
+@keyframes fi{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.ltag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:12px;}
+.tf{background:rgba(77,166,255,.15);color:var(--bl);}.tb{background:rgba(255,107,53,.15);color:var(--ac);}.ta{background:rgba(255,107,157,.15);color:var(--pk);}.to{background:rgba(255,179,71,.15);color:var(--a2);}
+.ltitle{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,3vw,2.1rem);font-weight:800;line-height:1.15;margin-bottom:10px;}
+.lintro{font-size:15px;color:var(--i2);line-height:1.75;margin-bottom:18px;}
+.lmeta{display:flex;gap:14px;font-size:12px;color:var(--i3);margin-bottom:34px;flex-wrap:wrap;}
+.block{margin-bottom:30px;}
+.btitle{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.btitle::before{content:'';width:4px;height:20px;border-radius:2px;background:var(--ac);flex-shrink:0;}
+.expl{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:20px;margin-bottom:10px;}
+.expl p{font-size:14px;line-height:1.75;color:var(--i2);}
+.expl p strong{color:var(--ink);}
+.expl p+p{margin-top:10px;}
+.hl{background:var(--s2);border-left:3px solid var(--ac);border-radius:0 var(--rs) var(--rs) 0;padding:12px 16px;margin-top:12px;font-size:13px;color:var(--ink);line-height:1.6;}
+.anal{background:linear-gradient(135deg,rgba(255,107,53,.07),rgba(255,179,71,.07));border:1px solid rgba(255,107,53,.18);border-radius:var(--r);padding:18px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;}
+.anico{font-size:26px;flex-shrink:0;}
+.anal p{font-size:13px;line-height:1.7;color:var(--i2);}
+.anal strong{color:var(--ink);display:block;margin-bottom:4px;font-size:14px;}
+.comp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.ccol{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:16px;}
+.ccol h4{font-size:13px;font-weight:600;margin-bottom:8px;}
+.ccol ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.ccol li{font-size:13px;color:var(--i2);padding-left:14px;position:relative;line-height:1.5;}
+.ccol li::before{content:'>';position:absolute;left:0;color:var(--i3);}
+.pdemo{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
+.pdh{padding:10px 16px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:6px;font-size:12px;color:var(--i3);}
+.d1{width:10px;height:10px;border-radius:50%;background:#FF5F56;}.d2{width:10px;height:10px;border-radius:50%;background:#FFBD2E;}.d3{width:10px;height:10px;border-radius:50%;background:#27C93F;}
+.pl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px 4px;color:var(--i3);}
+.pt{padding:4px 16px 10px;font-family:monospace;font-size:13px;line-height:1.6;color:var(--bl);}
+.rl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px 4px;color:var(--i3);border-top:1px solid var(--bd);}
+.rt{padding:4px 16px 14px;font-size:13px;color:var(--i2);line-height:1.65;}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.bab{border-radius:var(--r);padding:14px;background:rgba(255,107,53,.06);border:1px solid rgba(255,107,53,.2);}
+.bag{border-radius:var(--r);padding:14px;background:rgba(61,220,132,.06);border:1px solid rgba(61,220,132,.2);}
+.balbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px;}
+.bab .balbl{color:#FF6B6B;}.bag .balbl{color:var(--gn);}
+.batx{font-family:monospace;font-size:13px;line-height:1.6;color:var(--i2);}
+.kc{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-bottom:10px;}
+.kcard{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:14px;text-align:center;}
+.kico{font-size:24px;margin-bottom:7px;}
+.kname{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:4px;}
+.kdesc{font-size:11px;color:var(--i2);line-height:1.5;}
+.steps{position:relative;margin-bottom:10px;}
+.steps::before{content:'';position:absolute;left:20px;top:40px;bottom:40px;width:2px;background:var(--bd);}
+.step{display:flex;gap:14px;position:relative;z-index:1;padding-bottom:18px;}
+.step:last-child{padding-bottom:0;}
+.snum{width:40px;height:40px;border-radius:50%;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;flex-shrink:0;}
+.scon{padding-top:8px;flex:1;}
+.stitl{font-weight:600;font-size:14px;margin-bottom:4px;}
+.sdesc{font-size:13px;color:var(--i2);line-height:1.6;}
+.pbldr{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:20px;margin-bottom:10px;}
+.bgrd{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.bfld{display:flex;flex-direction:column;gap:4px;}
+.bfld label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--i3);}
+.bfld select,.bfld input{background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);padding:9px 12px;font-family:'Outfit',sans-serif;font-size:13px;color:var(--ink);outline:none;transition:.15s;}
+.bfld select:focus,.bfld input:focus{border-color:var(--ac);}
+.bfld select option{background:var(--s2);}
+.bout{background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);padding:14px;font-family:monospace;font-size:13px;color:var(--bl);line-height:1.6;min-height:70px;white-space:pre-wrap;word-break:break-word;}
+.quiz{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:20px;margin-bottom:10px;}
+.qq{font-size:15px;font-weight:500;margin-bottom:14px;line-height:1.5;}
+.qops{display:flex;flex-direction:column;gap:8px;}
+.qop{background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);padding:11px 14px;cursor:pointer;font-size:13px;color:var(--i2);transition:.15s;display:flex;align-items:center;gap:10px;}
+.qop:hover:not(.qdn){background:var(--s3);border-color:var(--ac);color:var(--ink);}
+.qop.correct{background:rgba(61,220,132,.1);border-color:var(--gn);color:var(--gn);}
+.qop.wrong{background:rgba(255,107,53,.1);border-color:var(--ac);color:#FF9A80;}
+.qlt{width:26px;height:26px;border-radius:50%;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
+.qfb{margin-top:10px;padding:10px 14px;border-radius:var(--rs);font-size:13px;line-height:1.6;display:none;}
+.qfb.correct{background:rgba(61,220,132,.1);border:1px solid rgba(61,220,132,.3);color:var(--gn);}
+.qfb.wrong{background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.3);color:#FF9A80;}
+.ex{background:linear-gradient(135deg,rgba(176,110,255,.06),rgba(77,166,255,.06));border:1px solid rgba(176,110,255,.2);border-radius:var(--r);padding:20px;margin-bottom:10px;}
+.exhd{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.exbdg{background:rgba(176,110,255,.2);color:var(--pu);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;}
+.ex h4{font-size:14px;font-weight:600;}
+.ex p{font-size:13px;color:var(--i2);line-height:1.65;margin-bottom:8px;}
+.ex textarea{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);padding:12px;font-family:'Outfit',sans-serif;font-size:13px;color:var(--ink);outline:none;resize:vertical;min-height:90px;transition:.15s;}
+.ex textarea:focus{border-color:var(--pu);}
+.extip{background:rgba(255,179,71,.08);border:1px solid rgba(255,179,71,.2);border-radius:var(--rs);padding:10px 14px;font-size:13px;color:var(--a2);margin-top:10px;line-height:1.6;}
+.vcard{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;display:flex;margin-bottom:9px;text-decoration:none;transition:.15s;}
+.vcard:hover{border-color:var(--ac);transform:translateY(-1px);}
+.vth{width:100px;min-height:68px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+.vin{padding:12px 14px;flex:1;}
+.vtag{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#FF0000;margin-bottom:4px;}
+.vtitle{font-size:13px;font-weight:500;color:var(--ink);line-height:1.4;margin-bottom:4px;}
+.vmeta{font-size:11px;color:var(--i3);}
+.ucgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:10px;margin-bottom:10px;}
+.ucard{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:14px;}
+.uico{font-size:22px;margin-bottom:7px;}
+.utitle{font-size:13px;font-weight:600;margin-bottom:4px;}
+.udesc{font-size:12px;color:var(--i2);line-height:1.5;}
+.uprompt{font-family:monospace;font-size:11px;color:var(--bl);background:var(--s2);border-radius:5px;padding:7px 9px;margin-top:7px;line-height:1.5;}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.tbtn{background:var(--s2);border:1px solid var(--bd);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:500;color:var(--i2);cursor:pointer;transition:.15s;font-family:'Outfit',sans-serif;}
+.tbtn.active{background:var(--ac);border-color:var(--ac);color:#fff;}
+.tc{display:none;}.tc.active{display:block;animation:fi .2s;}
+.ib{border-radius:var(--rs);padding:11px 14px;margin-bottom:10px;font-size:13px;line-height:1.6;}
+.iblu{background:rgba(77,166,255,.08);border:1px solid rgba(77,166,255,.2);color:#90c8ff;}
+.igrn{background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.2);color:#80e8b0;}
+.iorg{background:rgba(255,107,53,.08);border:1px solid rgba(255,107,53,.2);color:#ffaa80;}
+.ipur{background:rgba(176,110,255,.08);border:1px solid rgba(176,110,255,.2);color:#d0a8ff;}
+.cl{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:10px;}
+.cl li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--i2);line-height:1.5;padding:10px 14px;background:var(--s);border:1px solid var(--bd);border-radius:var(--rs);}
+.cl li .ck{font-size:15px;flex-shrink:0;margin-top:1px;}
+.aigrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:10px;}
+.aicard{background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:18px;transition:.2s;}
+.aicard:hover{border-color:var(--ac);transform:translateY(-2px);}
+.aihd{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.ailogo{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;font-weight:700;color:#fff;}
+.ainame{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;}
+.aimkr{font-size:11px;color:var(--i3);}
+.aidesc{font-size:13px;color:var(--i2);line-height:1.6;margin-bottom:10px;}
+.aibst{font-size:12px;padding:5px 9px;border-radius:var(--rs);margin-bottom:5px;}
+.abg{background:rgba(61,220,132,.1);color:var(--gn);}
+.abo{background:rgba(255,179,71,.1);color:var(--a2);}
+.abn{background:rgba(255,107,53,.1);color:#FF9A80;}
+.aitags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px;}
+.aitag{font-size:11px;padding:2px 7px;border-radius:20px;background:var(--s2);color:var(--i3);border:1px solid var(--bd);}
+.aiprice{font-size:11px;color:var(--i3);}
+.ailink{display:inline-block;margin-top:5px;font-size:12px;color:var(--bl);text-decoration:none;}
+.ailink:hover{text-decoration:underline;}
+.ctable{width:100%;border-collapse:collapse;margin-bottom:10px;font-size:13px;}
+.ctable th{background:var(--s2);color:var(--ink);font-weight:600;padding:10px 12px;text-align:left;border:1px solid var(--bd);}
+.ctable td{padding:9px 12px;border:1px solid var(--bd);color:var(--i2);}
+.ctable tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+.tdg{color:var(--gn)!important;}.tdo{color:var(--a2)!important;}.tdr{color:#FF9A80!important;}
+.achieve{background:linear-gradient(135deg,rgba(255,179,71,.1),rgba(255,107,53,.1));border:1px solid rgba(255,179,71,.3);border-radius:var(--r);padding:18px;display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+.aico{font-size:38px;flex-shrink:0;}
+.achieve h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:3px;}
+.achieve p{font-size:13px;color:var(--i2);}
+.xpbdg{background:var(--ac);color:#fff;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:600;margin-top:5px;display:inline-block;}
+.lnav{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:20px;border-top:1px solid var(--bd);}
+.lbtn{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--rs);border:1px solid var(--bd);background:var(--s);color:var(--i2);cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;transition:.15s;}
+.lbtn:hover{border-color:var(--ac);color:var(--ink);}
+.lbtn.next{background:var(--ac);border-color:var(--ac);color:#fff;}
+.lbtn.next:hover{background:#ff8050;}
+.donebtn{background:linear-gradient(135deg,var(--ac),var(--a2));border:none;color:#fff;padding:12px 28px;border-radius:var(--rs);font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:.2s;}
+.donebtn:hover{transform:scale(1.02);}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--s);border:1px solid var(--bd);border-radius:var(--r);padding:12px 18px;font-size:14px;display:flex;align-items:center;gap:10px;z-index:999;transform:translateY(80px);opacity:0;transition:.3s;max-width:280px;}
+.toast.show{transform:translateY(0);opacity:1;}
+#done{display:none;max-width:560px;margin:0 auto;padding:80px 28px;text-align:center;}
+#done.active{display:block;animation:fi .4s;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;}
+.overlay.show{display:block;}
+.mbtn{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;}
+@media(max-width:768px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.mbtn{display:block}.comp,.ba,.bgrd,.aigrid,.ucgrid,.kc{grid-template-columns:1fr}.lesson{padding:20px 16px 80px}.ctable{font-size:11px}}
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div class="slo">IA x Business</div>
+  <div class="ssu">Le guide complet pour maitriser l'IA et faire avancer tes projets - vraiment.</div>
+  <div class="sfe">
+    <span class="sf">7 lecons completes</span>
+    <span class="sf">Theorie + Pratique</span>
+    <span class="sf">Quiz interactifs</span>
+    <span class="sf">Focus Business</span>
+    <span class="sf">Prompts prets</span>
+  </div>
+  <button class="sbt" onclick="startCourse()">A toi de jouer !</button>
+</div>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="sbl"><span>IA x Business</span><p>Guide interactif complet</p></div>
+  <div class="sbp">
+    <div class="plb"><span>Progression</span><span id="pct">0%</span></div>
+    <div class="ptr"><div class="pfi" id="pbar" style="width:0%"></div></div>
+  </div>
+  <nav class="snv" id="snv"></nav>
+  <div class="sfoo">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--pu));display:flex;align-items:center;justify-content:center;font-size:16px;">&#x26A1;</div>
+      <div><div style="font-size:13px;font-weight:500;">Mon parcours</div><div style="font-size:11px;color:var(--ac);" id="xpd">0 XP</div></div>
+    </div>
+  </div>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <button class="mbtn" onclick="toggleSidebar()">&#9776;</button>
+    <div class="tbc" id="bc">Module 1 &middot; <span>Demarrer</span></div>
+    <button class="bsm" onclick="resetP()">&#8635; Reset</button>
+  </div>
+
+<div class="lesson active" id="lesson-0">
+  <div class="ltag tf">Module 1 &mdash; Fondations</div>
+  <h1 class="ltitle">Comprendre l'IA :<br>sans le blabla technique</h1>
+  <p class="lintro">Avant d'utiliser l'IA pour ton business, comprends ce qu'elle est vraiment. Pas techniquement &mdash; intuitivement. En 30 minutes, tu sauras exactement quoi en attendre.</p>
+  <div class="lmeta"><span>30 min</span><span>Debutant</span><span>+100 XP</span></div>
+
+  <div class="block">
+    <div class="btitle">C'est quoi l'IA en vrai ?</div>
+    <div class="expl">
+      <p>ChatGPT, Claude, Gemini... Ce ne sont <strong>pas des moteurs de recherche</strong>. Ils ne cherchent pas sur internet. Ce sont des <strong>modeles de langage (LLM)</strong> : des programmes qui ont analyse des milliards de textes humains et appris a predire quel mot suit logiquement un autre.</p>
+      <p>Quand tu poses une question, l'IA calcule quelle suite de mots est la plus probable. C'est pour ca que la facon dont tu formules ta question change <strong>radicalement</strong> la reponse obtenue.</p>
+      <div class="hl">L'IA est un outil de langage ultra-puissant, pas un cerveau humain. Elle excelle a structurer, rediger, analyser &mdash; mais peut se tromper sur des faits.</div>
+    </div>
+    <div class="anal">
+      <div class="anico">&#127928;</div>
+      <div><strong>L'analogie du musicien</strong><p>Imagine un musicien qui a ecoute 10 millions de chansons. Si tu lui fredonnes un air, il improvise la suite de facon coherente. Il n'a pas "compris" la musique &mdash; il a absorbe des patterns. L'IA, c'est pareil avec les mots et les idees.</p></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Ce que l'IA SAIT tres bien faire</div>
+    <div class="ucgrid">
+      <div class="ucard"><div class="uico">&#9999;&#65039;</div><div class="utitle">Rediger et reformuler</div><div class="udesc">Emails, articles, pitchs, posts reseaux, scripts video, descriptions produit...</div></div>
+      <div class="ucard"><div class="uico">&#129504;</div><div class="utitle">Brainstormer et ideer</div><div class="udesc">Generer des idees de business, noms, slogans, angles marketing, variations...</div></div>
+      <div class="ucard"><div class="uico">&#128202;</div><div class="utitle">Analyser et structurer</div><div class="udesc">Resumer des documents, extraire l'essentiel, creer des comparatifs...</div></div>
+      <div class="ucard"><div class="uico">&#128203;</div><div class="utitle">Planifier</div><div class="udesc">Plans de lancement, roadmaps, checklists, strategies pas-a-pas...</div></div>
+      <div class="ucard"><div class="uico">&#127917;</div><div class="utitle">Simuler des roles</div><div class="udesc">Jouer un investisseur, un client, un concurrent pour tester tes idees...</div></div>
+      <div class="ucard"><div class="uico">&#128269;</div><div class="utitle">Rechercher et synthetiser</div><div class="udesc">Expliquer des concepts, comparer des options, donner des references...</div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Ce que l'IA NE SAIT PAS faire</div>
+    <ul class="cl">
+      <li><span class="ck">&#9888;&#65039;</span><div><strong>Garantir l'exactitude des faits.</strong> L'IA peut inventer des chiffres, des noms, des sources. On appelle ca des "hallucinations". Toujours verifier les infos importantes.</div></li>
+      <li><span class="ck">&#9888;&#65039;</span><div><strong>Connaitre ton marche local en temps reel.</strong> Elle n'a pas acces aux dernieres donnees de ton secteur, a tes concurrents exacts, aux prix actuels.</div></li>
+      <li><span class="ck">&#9888;&#65039;</span><div><strong>Prendre des decisions a ta place.</strong> Elle analyse et propose &mdash; mais la decision finale t'appartient toujours.</div></li>
+      <li><span class="ck">&#9888;&#65039;</span><div><strong>Se souvenir de tes conversations passees</strong> (sauf avec Claude Projects ou instructions permanentes). Chaque conversation repart de zero par defaut.</div></li>
+    </ul>
+    <div class="ib iorg">Regle d'or business : utilise l'IA pour generer et structurer, utilise ton jugement pour decider et valider.</div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Quiz</div>
+    <div class="quiz" id="q0">
+      <div class="qq">Tu veux connaitre les prix exacts de tes concurrents aujourd'hui. L'IA peut-elle faire ca de facon fiable ?</div>
+      <div class="qops">
+        <div class="qop" onclick="ansQ('q0',0,1)"><div class="qlt">A</div>Oui, elle connait les prix en temps reel de tous les marches</div>
+        <div class="qop" onclick="ansQ('q0',1,1)"><div class="qlt">B</div>Non &mdash; elle peut donner des fourchettes generales mais pas des prix actuels fiables. Mieux vaut verifier soi-meme.</div>
+        <div class="qop" onclick="ansQ('q0',2,1)"><div class="qlt">C</div>Ca depend de l'IA utilisee</div>
+      </div>
+      <div class="qfb" id="qf-q0"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Pour aller plus loin</div>
+    <a href="https://www.youtube.com/@DefendIntelligence-IA" target="_blank" class="vcard">
+      <div class="vth">&#129504;</div>
+      <div class="vin"><div class="vtag">YouTube &middot; FR &middot; Gratuit</div><div class="vtitle">Defend Intelligence &mdash; Comment fonctionne vraiment l'IA generative</div><div class="vmeta">Vulgarisation de qualite &middot; Comprendre avant d'utiliser</div></div>
+    </a>
+    <a href="https://www.youtube.com/@LudoSalenne" target="_blank" class="vcard">
+      <div class="vth">&#9654;&#65039;</div>
+      <div class="vin"><div class="vtag">YouTube &middot; FR &middot; Gratuit</div><div class="vtitle">Ludo Salenne &mdash; Introduction complete a ChatGPT</div><div class="vmeta">Reference francaise &middot; Du debutant a l'avance</div></div>
+    </a>
+  </div>
+
+  <div class="achieve"><div class="aico">&#129504;</div><div><h4>Bases posees !</h4><p>Tu sais ce que l'IA peut et ne peut pas faire. C'est la fondation de tout.</p><span class="xpbdg">+100 XP</span></div></div>
+  <div class="lnav"><div></div><button class="lbtn next" onclick="done(0)">Lecon suivante &rarr;</button></div>
+</div>
+
+<div class="lesson" id="lesson-1">
+  <div class="ltag tf">Module 1 &mdash; Fondations</div>
+  <h1 class="ltitle">Creer un bon prompt :<br>la theorie complete</h1>
+  <p class="lintro">Un prompt, c'est ce que tu ecris a l'IA. La qualite de ta reponse depend a 80% de la qualite de ton prompt. Voila tout ce qu'il faut savoir &mdash; avec des exemples business concrets.</p>
+  <div class="lmeta"><span>40 min</span><span>Fondamental</span><span>+150 XP</span></div>
+
+  <div class="block">
+    <div class="btitle">Pourquoi ton prompt change tout</div>
+    <div class="ba">
+      <div class="bab"><div class="balbl">Prompt vague</div><div class="batx">"Aide-moi a trouver une idee de business"</div></div>
+      <div class="bag"><div class="balbl">Prompt precis</div><div class="batx">"Tu es consultant business. Je suis photographe avec 500EUR, 3h/jour. Propose 5 micro-business avec modele economique, cout de depart et premier client cible."</div></div>
+    </div>
+    <div class="ib iblu">La meme IA. Le meme moment. Resultats completement differents. Le prompt fait toute la difference.</div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">La theorie : les 7 elements d'un prompt parfait</div>
+    <div class="kc">
+      <div class="kcard"><div class="kico">&#127917;</div><div class="kname">1. Role</div><div class="kdesc">Qui doit etre l'IA ? Expert, coach, investisseur, client...</div></div>
+      <div class="kcard"><div class="kico">&#128205;</div><div class="kname">2. Contexte</div><div class="kdesc">Ta situation, ton projet, tes contraintes, ce que tu as deja fait</div></div>
+      <div class="kcard"><div class="kico">&#127919;</div><div class="kname">3. Tache</div><div class="kdesc">Ce que tu veux exactement. Un verbe d'action precis.</div></div>
+      <div class="kcard"><div class="kico">&#128203;</div><div class="kname">4. Format</div><div class="kdesc">Liste, tableau, plan, texte court, titres, bullet points...</div></div>
+      <div class="kcard"><div class="kico">&#127912;</div><div class="kname">5. Ton</div><div class="kdesc">Professionnel, detenu, direct, bienveillant, provocateur...</div></div>
+      <div class="kcard"><div class="kico">&#128683;</div><div class="kname">6. Contraintes</div><div class="kdesc">Ce qu'il ne faut PAS faire. "Sans jargon", "moins de 200 mots"...</div></div>
+      <div class="kcard"><div class="kico">&#128161;</div><div class="kname">7. Exemples</div><div class="kdesc">Montrer 1-2 exemples du resultat attendu (technique Few-Shot)</div></div>
+    </div>
+    <div class="ib igrn">Tu n'as pas besoin d'inclure les 7 a chaque fois. Mais plus tu en inclus, meilleure est la reponse. Pour les taches importantes, vise au moins 4-5 elements.</div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Les types de prompts &mdash; lesquels utiliser quand</div>
+    <div class="tabs">
+      <button class="tbtn active" onclick="showTab(event,'pt','pt1')">Generation</button>
+      <button class="tbtn" onclick="showTab(event,'pt','pt2')">Analyse</button>
+      <button class="tbtn" onclick="showTab(event,'pt','pt3')">Redaction</button>
+      <button class="tbtn" onclick="showTab(event,'pt','pt4')">Strategie</button>
+      <button class="tbtn" onclick="showTab(event,'pt','pt5')">Simulation</button>
+    </div>
+    <div id="pt1" class="tc active">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompt de generation</div>
+      <div class="pl">Formule</div><div class="pt">"Genere [nombre] [type de contenu] sur [sujet] pour [audience]. Format : [format]. Ton : [ton]."</div>
+      <div class="rl">Exemples concrets</div><div class="rt">
+        &bull; "Genere 10 noms de marque pour une boutique de vetements upcycles ciblant les 25-35 ans. Format : liste avec explication en 1 phrase pour chacun."<br>
+        &bull; "Genere 5 accroches pour une pub Facebook sur mon coaching sportif. Ton : dynamique et motivant."<br>
+        &bull; "Genere 20 idees de contenu Instagram pour un compte sur la finance personnelle pour debutants."
+      </div></div>
+    </div>
+    <div id="pt2" class="tc">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompt d'analyse</div>
+      <div class="pl">Formule</div><div class="pt">"Analyse [ce que tu soumets] et identifie [ce que tu cherches]. Reponds en [format]."</div>
+      <div class="rl">Exemples concrets</div><div class="rt">
+        &bull; "Analyse mon idee de business [description]. Identifie : les forces, les faiblesses, les risques principaux, et une opportunite que je n'ai peut-etre pas vue."<br>
+        &bull; "Analyse ce texte [colle le texte] et dis-moi ce qui manque, ce qui est flou, et ce qui devrait etre reformule."<br>
+        &bull; "Analyse les 5 plus gros concurrents de [ton secteur] et identifie leur positionnement commun &mdash; ou est le vide de marche ?"
+      </div></div>
+    </div>
+    <div id="pt3" class="tc">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompt de redaction</div>
+      <div class="pl">Formule</div><div class="pt">"Redige [type de contenu] pour [contexte/audience]. Ton : [ton]. Longueur : [longueur]. Inclure : [elements]. Eviter : [a ne pas faire]."</div>
+      <div class="rl">Exemples concrets</div><div class="rt">
+        &bull; "Redige un email de presentation pour un prospect. Mon service : coaching business. Ton : professionnel mais humain. 150 mots max. Eviter les formules generiques."<br>
+        &bull; "Redige une description produit pour [description]. Audience : [audience]. Met en avant la valeur, pas les caracteristiques."
+      </div></div>
+    </div>
+    <div id="pt4" class="tc">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompt de strategie</div>
+      <div class="pl">Formule</div><div class="pt">"Tu es [role expert]. Mon objectif est [objectif]. Contraintes : [budget, temps, competences]. Cree [plan/strategie] avec [structure]."</div>
+      <div class="rl">Exemples concrets</div><div class="rt">
+        &bull; "Tu es expert en lancement de business. Objectif : 1000EUR/mois supplementaires en 3 mois. Budget : 200EUR. Temps : 10h/semaine. Cree un plan semaine par semaine avec objectif mesurable pour chaque semaine."<br>
+        &bull; "Tu es expert en strategie de contenu. Cree un calendrier editorial sur 4 semaines pour un compte Instagram sur [theme] visant [objectif]."
+      </div></div>
+    </div>
+    <div id="pt5" class="tc">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompt de simulation</div>
+      <div class="pl">Formule</div><div class="pt">"Tu es [persona a simuler]. [Contexte]. Reponds/reagis comme le ferait vraiment ce persona."</div>
+      <div class="rl">Exemples concrets</div><div class="rt">
+        &bull; "Tu es mon client cible ideal : [description detaillee]. Je vais te pitcher mon offre. Dis-moi honnement ce que tu en penses, tes objections, et si tu acheterais. Sois brutal si necessaire."<br>
+        &bull; "Tu es un investisseur avec 15 ans d'experience. J'ai 5 minutes pour te convaincre. Dis-moi les questions que tu me poserais."<br>
+        &bull; "Tu es un client insatisfait typique de mon secteur. Qu'est-ce qui t'a decu ? Qu'est-ce qui te ferait revenir ?"
+      </div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Les erreurs les plus courantes a eviter</div>
+    <ul class="cl">
+      <li><span class="ck">&#10060;</span><div><strong>Trop vague :</strong> "Aide-moi avec mon business" &rarr; L'IA ne sait pas par ou commencer. Sois specifique sur ce que tu veux exactement.</div></li>
+      <li><span class="ck">&#10060;</span><div><strong>Pas de contexte :</strong> Sans savoir qui tu es, l'IA donne une reponse generique qui ne s'applique pas a ton cas.</div></li>
+      <li><span class="ck">&#10060;</span><div><strong>Tout dans un seul prompt :</strong> Pour les taches complexes, decoupe en plusieurs echanges. L'IA travaille mieux sur des taches focalisees.</div></li>
+      <li><span class="ck">&#10060;</span><div><strong>Accepter la premiere reponse :</strong> Demande toujours a l'IA d'ameliorer, d'aller plus loin, d'etre plus concrete. La 2e ou 3e reponse est souvent bien meilleure.</div></li>
+      <li><span class="ck">&#10060;</span><div><strong>Ne pas donner de format :</strong> Si tu ne dis pas comment tu veux la reponse, l'IA choisit un format par defaut pas toujours optimal.</div></li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Construis ton prompt en direct</div>
+    <div class="pbldr">
+      <p style="font-size:13px;color:var(--i2);margin-bottom:14px;">Remplis les champs et vois ton prompt se construire :</p>
+      <div class="bgrd">
+        <div class="bfld"><label>Role de l'IA</label>
+          <select id="br" oninput="bld()">
+            <option value="Tu es un expert en business en ligne">Expert business en ligne</option>
+            <option value="Tu es un consultant en marketing digital">Consultant marketing digital</option>
+            <option value="Tu es un investisseur experimente">Investisseur experimente</option>
+            <option value="Tu es un expert en e-commerce">Expert e-commerce</option>
+            <option value="Tu es un copywriter professionnel">Copywriter professionnel</option>
+            <option value="Tu es un coach entrepreneurial">Coach entrepreneurial</option>
+          </select></div>
+        <div class="bfld"><label>Ton contexte</label>
+          <input type="text" id="bc2" placeholder="Ex: Je suis graphiste avec 500EUR..." oninput="bld()"></div>
+        <div class="bfld"><label>Ce que tu veux</label>
+          <select id="bt" oninput="bld()">
+            <option value="Genere 5 idees de business adaptees a mon profil">5 idees de business</option>
+            <option value="Cree un plan d'action sur 30 jours">Plan 30 jours</option>
+            <option value="Analyse mon idee et donne tes forces/faiblesses">Analyse mon idee</option>
+            <option value="Propose une strategie pour trouver mes 10 premiers clients">Trouver premiers clients</option>
+            <option value="Redige un pitch de presentation de 3 paragraphes">Rediger un pitch</option>
+          </select></div>
+        <div class="bfld"><label>Format souhaite</label>
+          <select id="bf" oninput="bld()">
+            <option value="Reponds avec une liste numerotee, sois concis et actionnable.">Liste numerotee</option>
+            <option value="Reponds en tableau : Idee | Avantage | Premier pas.">Tableau comparatif</option>
+            <option value="Reponds en plan structure avec des titres clairs.">Plan structure</option>
+            <option value="Reponds en moins de 200 mots, va a l'essentiel.">Court et direct</option>
+          </select></div>
+      </div>
+      <div class="bout" id="bout">Remplis les champs ci-dessus...</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Quiz</div>
+    <div class="quiz" id="q1">
+      <div class="qq">Lequel de ces prompts va donner la meilleure reponse pour ton business ?</div>
+      <div class="qops">
+        <div class="qop" onclick="ansQ('q1',0,1)"><div class="qlt">A</div>"Donne-moi des idees de business"</div>
+        <div class="qop" onclick="ansQ('q1',1,1)"><div class="qlt">B</div>"Tu es consultant. Je suis graphiste avec 500EUR, 10h/semaine. Propose 3 services que je peux vendre des ce mois avec leur tarif et comment trouver les 5 premiers clients."</div>
+        <div class="qop" onclick="ansQ('q1',2,1)"><div class="qlt">C</div>"Aide-moi avec mes idees"</div>
+      </div>
+      <div class="qfb" id="qf-q1"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Exercice</div>
+    <div class="ex">
+      <div class="exhd"><div class="exbdg">A faire maintenant</div><h4>Ecris ton premier vrai prompt business</h4></div>
+      <p>Pense a un projet ou une idee qui t'interesse. Ecris un prompt complet avec : Role + Contexte (TON contexte reel) + Tache precise + Format. Ensuite colle-le dans ChatGPT ou Claude.</p>
+      <textarea placeholder="Tu es un expert en [domaine]. Je suis [qui tu es] avec [tes contraintes]. [Ce que tu veux exactement]. Reponds en [format]."></textarea>
+      <div class="extip">Apres avoir eu la reponse, ajoute : "Maintenant ameliore ta reponse : rends-la plus concrete et donne-moi ce que je dois faire AUJOURD'HUI." La 2e reponse sera bien meilleure.</div>
+    </div>
+  </div>
+
+  <div class="achieve"><div class="aico">&#9999;&#65039;</div><div><h4>Maitre du prompt !</h4><p>Tu connais la theorie complete des prompts. C'est la competence la plus importante a maitriser.</p><span class="xpbdg">+150 XP</span></div></div>
+  <div class="lnav"><button class="lbtn" onclick="goL(0)">&larr; Precedent</button><button class="lbtn next" onclick="done(1)">Lecon suivante &rarr;</button></div>
+</div>
+
+<div class="lesson" id="lesson-2">
+  <div class="ltag tf">Module 1 &mdash; Fondations</div>
+  <h1 class="ltitle">Tout ce qu'on peut faire<br>avec l'IA &mdash; le panorama complet</h1>
+  <p class="lintro">L'IA peut transformer presque tous les aspects de ton quotidien et de ton business. Voila un guide exhaustif de tout ce qui est possible &mdash; avec des prompts prets a copier-coller pour chaque cas.</p>
+  <div class="lmeta"><span>35 min</span><span>Panorama</span><span>+150 XP</span></div>
+
+  <div class="block">
+    <div class="btitle">Business &amp; Entrepreneuriat</div>
+    <div class="tabs">
+      <button class="tbtn active" onclick="showTab(event,'uc','uc1')">Ideation</button>
+      <button class="tbtn" onclick="showTab(event,'uc','uc2')">Strategie</button>
+      <button class="tbtn" onclick="showTab(event,'uc','uc3')">Marketing</button>
+      <button class="tbtn" onclick="showTab(event,'uc','uc4')">Contenu</button>
+      <button class="tbtn" onclick="showTab(event,'uc','uc5')">Admin</button>
+    </div>
+    <div id="uc1" class="tc active">
+      <div class="ucgrid">
+        <div class="ucard"><div class="uico">&#128161;</div><div class="utitle">Trouver des idees business</div><div class="udesc">Generer des idees adaptees a tes competences et budget.</div><div class="uprompt">"Tu es expert business. J'ai [competences]. Budget [X EUR]. Temps [Xh/semaine]. Genere 10 idees du plus simple au plus ambitieux."</div></div>
+        <div class="ucard"><div class="uico">&#127919;</div><div class="utitle">Valider une idee</div><div class="udesc">Tester la viabilite avant d'investir.</div><div class="uprompt">"Analyse mon idee [description]. Forces, faiblesses, risques, opportunites. Investirais-tu dedans et pourquoi ?"</div></div>
+        <div class="ucard"><div class="uico">&#127991;</div><div class="utitle">Naming &amp; branding</div><div class="udesc">Trouver des noms, slogans, identite de marque.</div><div class="uprompt">"Genere 20 noms pour [business]. Cible : [audience]. Valeurs : [valeurs]. Inclure le sens et pourquoi ca marche."</div></div>
+        <div class="ucard"><div class="uico">&#128176;</div><div class="utitle">Modele economique</div><div class="udesc">Definir comment tu vas gagner de l'argent.</div><div class="uprompt">"Pour ce business [description], propose 3 modeles economiques differents avec revenus estimes et risques."</div></div>
+      </div>
+    </div>
+    <div id="uc2" class="tc">
+      <div class="ucgrid">
+        <div class="ucard"><div class="uico">&#128506;</div><div class="utitle">Plan de lancement</div><div class="udesc">Roadmap semaine par semaine pour lancer ton projet.</div><div class="uprompt">"Plan de lancement 90 jours pour [projet]. Budget [EUR]. Temps [h/sem]. 1 priorite par semaine + critere de succes."</div></div>
+        <div class="ucard"><div class="uico">&#128101;</div><div class="utitle">Premiers clients</div><div class="udesc">Strategies d'acquisition sans budget pub.</div><div class="uprompt">"Mon business [desc]. Client cible [desc]. Budget pub = 0. Donne 10 facons de trouver mes 10 premiers clients cette semaine."</div></div>
+        <div class="ucard"><div class="uico">&#128200;</div><div class="utitle">Pricing</div><div class="udesc">Definir ses tarifs et structure d'offre.</div><div class="uprompt">"Mon offre [desc]. Concurrents : [fourchette]. Ma cible [desc]. Propose 3 structures de prix avec justification."</div></div>
+        <div class="ucard"><div class="uico">&#128260;</div><div class="utitle">Pivot et adaptation</div><div class="udesc">Changer de direction si ca ne marche pas.</div><div class="uprompt">"Mon business [desc] ne fonctionne pas car [raison]. Propose 5 pivots possibles en gardant mes competences."</div></div>
+      </div>
+    </div>
+    <div id="uc3" class="tc">
+      <div class="ucgrid">
+        <div class="ucard"><div class="uico">&#128226;</div><div class="utitle">Copywriting pub</div><div class="udesc">Textes pour pubs, landing pages, emails marketing.</div><div class="uprompt">"3 versions d'accroche pour pub Facebook sur [produit]. Audience [desc]. Objectif : clics. Version courte, moyenne, longue."</div></div>
+        <div class="ucard"><div class="uico">&#128140;</div><div class="utitle">Email marketing</div><div class="udesc">Sequences d'emails, newsletters, cold outreach.</div><div class="uprompt">"Sequence de 5 emails de bienvenue pour [business]. Objectif : convertir l'abonne en client. Ton [ton]. 1 email par jour."</div></div>
+        <div class="ucard"><div class="uico">&#127919;</div><div class="utitle">Positionnement</div><div class="udesc">Se differencier clairement de la concurrence.</div><div class="uprompt">"Mon secteur [secteur]. Concurrents tous sur [angle]. Propose 5 angles de differenciation originaux."</div></div>
+        <div class="ucard"><div class="uico">&#128269;</div><div class="utitle">Analyse de marche</div><div class="udesc">Comprendre ton secteur et ta cible.</div><div class="uprompt">"Analyse le marche de [secteur]. Tendances, acteurs dominants, segments peu exploites, frustrations clients."</div></div>
+      </div>
+    </div>
+    <div id="uc4" class="tc">
+      <div class="ucgrid">
+        <div class="ucard"><div class="uico">&#128241;</div><div class="utitle">Posts reseaux sociaux</div><div class="udesc">Instagram, LinkedIn, TikTok, Twitter/X...</div><div class="uprompt">"10 posts LinkedIn sur [theme] pour [audience]. Format : accroche + corps + CTA. Inclure des questions pour engager."</div></div>
+        <div class="ucard"><div class="uico">&#128221;</div><div class="utitle">Articles de blog / SEO</div><div class="udesc">Contenu long format pour attirer du trafic.</div><div class="uprompt">"Plan d'article SEO sur [sujet] pour [audience]. Titre H1, 5 sous-titres H2, points cles, mots-cles a inclure."</div></div>
+        <div class="ucard"><div class="uico">&#127908;</div><div class="utitle">Scripts video / podcast</div><div class="udesc">YouTube, TikTok, Reels, episodes podcast.</div><div class="uprompt">"Script 60 secondes TikTok sur [sujet]. Structure : accroche 3s / probleme 10s / solution 30s / CTA 10s / outro 7s."</div></div>
+        <div class="ucard"><div class="uico">&#128197;</div><div class="utitle">Calendrier editorial</div><div class="udesc">Planifier son contenu sur 1 mois.</div><div class="uprompt">"Calendrier editorial 30 jours pour [plateforme] sur [theme]. 1 post/jour. Varier : educatif / inspirant / promo."</div></div>
+      </div>
+    </div>
+    <div id="uc5" class="tc">
+      <div class="ucgrid">
+        <div class="ucard"><div class="uico">&#9993;&#65039;</div><div class="utitle">Emails professionnels</div><div class="udesc">Rediger, ameliorer, reformuler des emails.</div><div class="uprompt">"Reecris cet email [colle l'email] de facon plus professionnelle et convaincante, en moins de 150 mots."</div></div>
+        <div class="ucard"><div class="uico">&#128196;</div><div class="utitle">Documents business</div><div class="udesc">Propositions commerciales, templates...</div><div class="uprompt">"Template de proposition commerciale pour [service]. Sections : resume / probleme / solution / tarifs / CTA."</div></div>
+        <div class="ucard"><div class="uico">&#128202;</div><div class="utitle">Presentations</div><div class="udesc">Structure de slides, pitch decks...</div><div class="uprompt">"Plan pitch deck 10 slides pour [projet]. Pour chaque slide : titre, message principal, ce qu'on y montre."</div></div>
+        <div class="ucard"><div class="uico">&#129302;</div><div class="utitle">Automatisation</div><div class="udesc">Identifier les taches repetitives a automatiser.</div><div class="uprompt">"Liste toutes les taches repetitives de mon business [desc]. Pour chacune, propose comment l'IA pourrait l'automatiser."</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Quiz</div>
+    <div class="quiz" id="q2">
+      <div class="qq">Tu veux creer une presence Instagram pour ton business mais tu manques de temps. L'IA peut t'aider a...</div>
+      <div class="qops">
+        <div class="qop" onclick="ansQ('q2',0,1)"><div class="qlt">A</div>Uniquement generer des textes mais pas des idees visuelles</div>
+        <div class="qop" onclick="ansQ('q2',1,1)"><div class="qlt">B</div>Generer des idees de posts, rediger les legendes, creer un calendrier editorial, proposer des concepts visuels et des accroches</div>
+        <div class="qop" onclick="ansQ('q2',2,1)"><div class="qlt">C</div>L'IA ne peut pas vraiment aider sur les reseaux sociaux</div>
+      </div>
+      <div class="qfb" id="qf-q2"></div>
+    </div>
+  </div>
+
+  <div class="achieve"><div class="aico">&#128506;</div><div><h4>Panorama complet !</h4><p>Tu sais maintenant tout ce que l'IA peut faire pour toi &mdash; business et perso.</p><span class="xpbdg">+150 XP</span></div></div>
+  <div class="lnav"><button class="lbtn" onclick="goL(1)">&larr; Precedent</button><button class="lbtn next" onclick="done(2)">Lecon suivante &rarr;</button></div>
+</div>
+
+<div class="lesson" id="lesson-3">
+  <div class="ltag tb">Module 2 &mdash; Business</div>
+  <h1 class="ltitle">L'IA pour brainstormer :<br>le guide complet</h1>
+  <p class="lintro">Brainstormer avec l'IA, c'est avoir un partenaire disponible 24h/24, qui ne juge pas, ne se fatigue pas, et peut explorer des centaines d'angles en quelques minutes. Voila toutes les techniques pour en tirer le maximum.</p>
+  <div class="lmeta"><span>45 min</span><span>Avance</span><span>+200 XP</span></div>
+
+  <div class="block">
+    <div class="btitle">Pourquoi l'IA est le meilleur brainstorming partner</div>
+    <div class="expl">
+      <p>Quand tu brainstormes avec un ami, il a ses biais, sa peur de te vexer, sa fatigue. L'IA n'a aucun de ces filtres. Elle <strong>genere sans se censurer</strong>, joue l'avocat du diable sans drama, et explore des angles auxquels tu n'aurais jamais pense.</p>
+      <p>Le secret : <strong>ne pas chercher a avoir une bonne idee immediatement</strong>. L'objectif est d'explorer le champ des possibles, identifier les angles interessants, puis creuser les meilleurs. C'est un processus en plusieurs tours.</p>
+      <div class="hl">Regle d'or : commence large, puis reduis. Ne jamais juger une idee dans le meme prompt qui la genere &mdash; d'abord generer, ensuite filtrer.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Les 7 techniques de brainstorming avec l'IA</div>
+    <div class="steps">
+      <div class="step"><div class="snum">1</div><div class="scon">
+        <div class="stitl">L'expansion &mdash; "Donne-moi le maximum d'idees"</div>
+        <div class="sdesc">Commence toujours par demander un maximum d'options sans filtre. "Genere 20 idees de business dans [domaine], du plus simple au plus ambitieux, sans te censurer." Tu trouveras des pepites dans les idees qui semblent etranges.</div>
+      </div></div>
+      <div class="step"><div class="snum">2</div><div class="scon">
+        <div class="stitl">L'avocat du diable &mdash; "Detruis mon idee"</div>
+        <div class="sdesc">Avant d'investir du temps, teste la resistance de ton idee. "Joue l'avocat du diable. Donne-moi les 10 raisons pour lesquelles mon business [description] va echouer. Sois brutal et honnete." Ce que tu decouvres ici vaut de l'or.</div>
+      </div></div>
+      <div class="step"><div class="snum">3</div><div class="scon">
+        <div class="stitl">Le persona client &mdash; "Pense comme mon client"</div>
+        <div class="sdesc">Demande a l'IA d'incarner ton client cible. "Tu es [description tres precise de ton client ideal]. Qu'est-ce qui te frustre le plus dans ta vie liee a [domaine] ? Qu'est-ce que tu acheterais immediatement si ca existait ?"</div>
+      </div></div>
+      <div class="step"><div class="snum">4</div><div class="scon">
+        <div class="stitl">La combinaison &mdash; "Fusionne deux idees"</div>
+        <div class="sdesc">"Combine le concept A [description] et le concept B [description]. Propose 5 facons dont ils pourraient fusionner en un business original et differencie." Les meilleures idees viennent souvent de croisements inattendus.</div>
+      </div></div>
+      <div class="step"><div class="snum">5</div><div class="scon">
+        <div class="stitl">Le "Et si" &mdash; Explorer les scenarios</div>
+        <div class="sdesc">Enchaine des "et si" dans la meme conversation. "Et si je ciblais uniquement les femmes ? Et si c'etait un abonnement ? Et si je le faisais 100% en ligne ?" L'IA garde le contexte et affine a chaque tour.</div>
+      </div></div>
+      <div class="step"><div class="snum">6</div><div class="scon">
+        <div class="stitl">Le concurrent imaginaire &mdash; "Comment tu me battrais ?"</div>
+        <div class="sdesc">"Tu es mon concurrent principal. Tu viens d'apprendre mon concept [description]. Comment tu le repliques et l'ameliores pour me battre ?" Ce que l'IA repond te revele exactement les failles de ton concept.</div>
+      </div></div>
+      <div class="step"><div class="snum">7</div><div class="scon">
+        <div class="stitl">Le board of advisors &mdash; "Plusieurs perspectives"</div>
+        <div class="sdesc">"Analyse mon idee depuis 4 perspectives : l'investisseur (rentabilite ?), le client (l'acheterais-je ?), le concurrent (comment je te bats ?), et le sceptique (pourquoi ca va echouer ?)" Conseil 360 en un seul prompt.</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Le workflow complet d'une session de brainstorming</div>
+    <div class="pdemo">
+      <div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Session complete &mdash; exemple pas a pas</div>
+      <div class="pl">Tour 1 &mdash; Expansion large</div>
+      <div class="pt">"Tu es expert en business. Je suis passionne de [domaine], j'ai [ressources]. Genere 15 idees de micro-business dans cet espace, du plus simple au plus ambitieux. Sans te censurer."</div>
+      <div class="pl">Tour 2 &mdash; Filtre</div>
+      <div class="pt">"Parmi ces 15 idees, lesquelles ont le meilleur ratio effort/revenu pour quelqu'un qui demarre ? Classe les 5 meilleures avec justification."</div>
+      <div class="pl">Tour 3 &mdash; Approfondissement</div>
+      <div class="pt">"Zoome sur l'idee numero [X]. Decris : le modele exact, comment ca genere des revenus, les 3 premieres etapes concretes cette semaine."</div>
+      <div class="pl">Tour 4 &mdash; Resistance</div>
+      <div class="pt">"Joue l'avocat du diable sur cette idee. Les 7 raisons pourquoi ca va echouer. Pour chaque risque, donne la contre-mesure."</div>
+      <div class="pl">Tour 5 &mdash; Validation rapide</div>
+      <div class="pt">"Comment valider cette idee en 2 semaines sans investir d'argent ? Propose le test minimum viable."</div>
+      <div class="rl">Resultat</div>
+      <div class="rt">En 30-45 min de conversation, tu as : une idee filtree, un modele economique, un plan d'action, une analyse de risques ET une facon de valider sans risque. Ce que d'autres mettent des semaines a faire seuls.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Prompts avances qui surprennent</div>
+    <div class="pdemo">
+      <div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompts avances a copier-coller</div>
+      <div class="pl">Le "probleme non resolu"</div>
+      <div class="pt">"Dans le secteur [secteur], quels sont les 10 plus grands problemes que les entreprises actuelles ne resolvent pas bien ? Pour chacun, quelle serait l'opportunite business a saisir ?"</div>
+      <div class="pl">Le "tendance + timing"</div>
+      <div class="pt">"Quelles tendances actuelles (IA, durabilite, remote work, sante mentale...) creent des opportunites business que peu de gens exploitent encore ? Propose 5 niches sous-exploitees."</div>
+      <div class="pl">Le "contre-intuitif"</div>
+      <div class="pt">"Dans mon domaine [domaine], quelle serait une idee completement contre-intuitive, qui semble absurde au premier abord mais qui pourrait fonctionner ? Developpe 3 concepts."</div>
+      <div class="pl">Le "micro-niche"</div>
+      <div class="pt">"Prends l'idee [ton idee]. Comment la rendre encore plus specifique en ciblant une micro-niche ultra-precise ? Propose 10 niches possibles. Plus elles sont precises, mieux c'est."</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Quiz</div>
+    <div class="quiz" id="q3">
+      <div class="qq">Tu as une idee de business mais tu ne sais pas si elle est bonne. Quelle approche est la plus efficace avec l'IA ?</div>
+      <div class="qops">
+        <div class="qop" onclick="ansQ('q3',0,1)"><div class="qlt">A</div>Demander "Est-ce une bonne idee ?" et accepter la reponse</div>
+        <div class="qop" onclick="ansQ('q3',1,1)"><div class="qlt">B</div>Generer des variantes &rarr; Filtrer les meilleures &rarr; Approfondir la favorite &rarr; Tester avec l'avocat du diable &rarr; Definir un test de validation minimal</div>
+        <div class="qop" onclick="ansQ('q3',2,1)"><div class="qlt">C</div>Chercher directement sur Google si l'idee existe deja</div>
+      </div>
+      <div class="qfb" id="qf-q3"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Exercice &mdash; Lance ta vraie session</div>
+    <div class="ex">
+      <div class="exhd"><div class="exbdg">Exercice intensif</div><h4>Session complete en 5 tours</h4></div>
+      <p>Ouvre ChatGPT ou Claude. Lance une session en 5 tours (expansion &rarr; filtre &rarr; approfondissement &rarr; avocat du diable &rarr; validation). Choisis n'importe quel domaine qui t'interesse. 20-30 minutes et tu ressors avec une vraie piste business analysee.</p>
+      <textarea placeholder="Note ici ce que tu as decouvert : quelle idee t'a surpris ? Qu'est-ce que l'avocat du diable a revele ? Quelle piste retiens-tu ?"></textarea>
+      <div class="extip">Astuce pro : si une reponse est trop generale, dis a l'IA "Sois plus specifique et concret. Donne des exemples precis avec des chiffres." Ca change tout.</div>
+    </div>
+  </div>
+
+  <div class="achieve"><div class="aico">&#128161;</div><div><h4>Brainstormer IA !</h4><p>Tu maitrises les 7 techniques et le workflow complet. Tu peux generer et valider des idees business en 30 minutes.</p><span class="xpbdg">+200 XP</span></div></div>
+  <div class="lnav"><button class="lbtn" onclick="goL(2)">&larr; Precedent</button><button class="lbtn next" onclick="done(3)">Lecon suivante &rarr;</button></div>
+</div>
+
+<div class="lesson" id="lesson-4">
+  <div class="ltag tb">Module 2 &mdash; Business</div>
+  <h1 class="ltitle">L'IA comme co-fondateur :<br>guide complet long terme</h1>
+  <p class="lintro">C'est la lecon la plus importante du cours. Un co-fondateur disponible 24h/24, qui ne se fatigue pas, connait des centaines de modeles business, analyse ta situation en profondeur et te dit toujours la verite. Voila comment le configurer et l'utiliser au maximum.</p>
+  <div class="lmeta"><span>50 min</span><span>Strategique</span><span>+300 XP</span></div>
+
+  <div class="block">
+    <div class="btitle">Etape 1 &mdash; Configurer l'IA pour ton business</div>
+    <div class="expl">
+      <p>La premiere chose a faire : <strong>ne plus jamais repartir de zero</strong>. Configure ton IA avec ton contexte complet une fois, et chaque conversation sera 10x plus utile immediatement.</p>
+    </div>
+    <div class="comp">
+      <div class="ccol" style="border-color:rgba(77,166,255,.3);">
+        <h4 style="color:var(--bl);">ChatGPT &mdash; Custom Instructions</h4>
+        <ul>
+          <li>Parametres &rarr; Instructions personnalisees</li>
+          <li>2 champs : qui tu es / comment repondre</li>
+          <li>Actif dans TOUTES tes conversations</li>
+          <li>A mettre a jour quand ton projet evolue</li>
+        </ul>
+      </div>
+      <div class="ccol" style="border-color:rgba(255,107,53,.3);">
+        <h4 style="color:var(--ac);">Claude &mdash; Projects</h4>
+        <ul>
+          <li>Cree un Project dedie a ton business</li>
+          <li>Instructions dans les parametres du projet</li>
+          <li>Toutes les conversations partagent ce contexte</li>
+          <li>Peut inclure des documents de reference</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pdemo">
+      <div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Template d'instructions permanentes &mdash; copie et adapte</div>
+      <div class="pl">Colle ca dans tes instructions</div>
+      <div class="pt">Je suis [prenom], entrepreneur en developpement base en [pays].
+
+MON PROJET ACTUEL : [decris ton projet en 3-4 phrases]
+MA CIBLE CLIENT : [decris qui tu veux servir]
+MES FORCES : [tes competences principales]
+MES CONTRAINTES : Budget [X EUR] - Temps [Xh/semaine]
+MON OBJECTIF 6 MOIS : [objectif mesurable]
+
+COMMENT ME REPONDRE :
+- Toujours direct et actionnable, pas de blabla
+- Donne des exemples concrets avec des chiffres
+- Dis-moi ce que je dois faire EN PREMIER
+- Si tu n'es pas sur d'un fait, dis-le explicitement
+- Challenge mes idees : je veux de l'honnetete, pas de la flatterie</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Etape 2 &mdash; Les 15 prompts strategiques essentiels</div>
+    <div class="tabs">
+      <button class="tbtn active" onclick="showTab(event,'sp','sp1')">Validation</button>
+      <button class="tbtn" onclick="showTab(event,'sp','sp2')">Planification</button>
+      <button class="tbtn" onclick="showTab(event,'sp','sp3')">Clients</button>
+      <button class="tbtn" onclick="showTab(event,'sp','sp4')">Croissance</button>
+      <button class="tbtn" onclick="showTab(event,'sp','sp5')">Crises</button>
+    </div>
+    <div id="sp1" class="tc active">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompts de validation</div>
+      <div class="pl">Analyse d'investisseur</div>
+      <div class="pt">"Tu es un investisseur avec 20 ans d'experience. Analyse mon idee [description]. En 3 sections : ce qui est solide, ce qui est risque, les 3 questions que tu me poserais avant d'investir. Sois honnete et direct."</div>
+      <div class="pl">Test de marche rapide</div>
+      <div class="pt">"Comment valider mon idee [description] en 2 semaines, sans investir d'argent, avec des metriques claires ? Donne-moi le test minimum viable et comment interpreter les resultats."</div>
+      <div class="pl">Analyse de la concurrence</div>
+      <div class="pt">"Pour mon projet [description], qui sont les concurrents directs et indirects ? Quelles sont leurs faiblesses ? Quel angle d'attaque m'offre la meilleure chance de me differencier ?"</div>
+      </div>
+    </div>
+    <div id="sp2" class="tc">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompts de planification</div>
+      <div class="pl">Plan de lancement 90 jours</div>
+      <div class="pt">"Cree un plan de lancement sur 90 jours pour [mon projet]. Budget [EUR]. Temps [h/sem]. Pour chaque semaine : objectif principal, 3 actions concretes, critere de succes mesurable."</div>
+      <div class="pl">Roadmap produit</div>
+      <div class="pt">"Pour mon business [desc], cree une roadmap 12 mois. Phase 1 (mois 1-3) : validation. Phase 2 (mois 4-6) : croissance. Phase 3 (mois 7-12) : scale. Pour chaque phase : objectifs, ressources, risques."</div>
+      <div class="pl">Budget et finances</div>
+      <div class="pt">"Aide-moi a construire un modele financier simple pour [business]. Couts de demarrage, couts mensuels, revenus estimes par scenario (pessimiste/realiste/optimiste), point d'equilibre."</div>
+      </div>
+    </div>
+    <div id="sp3" class="tc">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompts sur les clients</div>
+      <div class="pl">Profil client ideal</div>
+      <div class="pt">"Aide-moi a construire le profil detaille de mon client ideal pour [business]. Donnees demographiques, psychographiques, frustrations profondes, aspirations, ou il passe son temps en ligne, ce qui le fait acheter ou pas."</div>
+      <div class="pl">Acquisition premiers clients</div>
+      <div class="pt">"Mon business [desc]. Client cible [desc]. Je pars de zero. Donne-moi un plan pour avoir mes 10 premiers clients payants en 30 jours, budget pub = 0. Detaille chaque etape."</div>
+      <div class="pl">Retention et fidelisation</div>
+      <div class="pt">"Quelles sont les 5 raisons pour lesquelles les clients quittent un business comme [mon business] ? Pour chacune, propose une contre-mesure concrete a mettre en place ce mois-ci."</div>
+      </div>
+    </div>
+    <div id="sp4" class="tc">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompts de croissance</div>
+      <div class="pl">Identifier le levier de croissance</div>
+      <div class="pt">"Mon business [etat actuel : revenus, clients, canaux]. Ou est le plus grand levier de croissance pour les 3 prochains mois ? Acquisition, conversion, retention ou expansion ? Pourquoi et comment l'activer ?"</div>
+      <div class="pl">Nouvelles sources de revenus</div>
+      <div class="pt">"A partir de mon business actuel [desc], quelles sont 5 nouvelles sources de revenus que je pourrais ajouter sans tout recommencer ? Classe par effort/impact."</div>
+      <div class="pl">Scale et automatisation</div>
+      <div class="pt">"Mon business tourne a [X heures/semaine]. Comment je scale sans travailler proportionnellement plus ? Identifie ce qui peut etre automatise, externalise, ou standardise."</div>
+      </div>
+    </div>
+    <div id="sp5" class="tc">
+      <div class="pdemo"><div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Prompts en cas de difficultes</div>
+      <div class="pl">Analyser pourquoi ca ne marche pas</div>
+      <div class="pt">"Mon business [desc] ne genere pas les resultats attendus. Voici ce que j'ai fait : [actions]. Voici les resultats : [resultats]. Diagnostic : qu'est-ce qui ne va pas ? Quoi changer en priorite ?"</div>
+      <div class="pl">Definir un pivot</div>
+      <div class="pt">"Mon concept original [desc] ne fonctionne pas car [raison]. En gardant mes ressources actuelles [ressources], propose 5 pivots possibles avec le potentiel de chacun."</div>
+      <div class="pl">Gerer un concurrent agressif</div>
+      <div class="pt">"Un concurrent vient d'apparaitre avec [son offre] a [prix]. Comment je reponds sans entrer dans une guerre de prix ? Quels angles de differenciation me permettent de garder mes clients ?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Etape 3 &mdash; La technique des conversations profondes</div>
+    <div class="expl">
+      <p>La plupart des gens utilisent l'IA pour des taches. Les meilleurs l'utilisent pour <strong>penser</strong>. Voila comment avoir des conversations strategiques profondes.</p>
+      <div class="hl">Methode : donne le contexte complet, demande a l'IA de te poser des questions avant de repondre, puis developpe la conversation comme avec un vrai conseiller.</div>
+    </div>
+    <div class="pdemo">
+      <div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> La conversation strategique profonde</div>
+      <div class="pl">Prompt de demarrage</div>
+      <div class="pt">"Tu es mon conseiller strategique business. Je vais te decrire ma situation complete. Avant de me donner des conseils, pose-moi toutes les questions dont tu as besoin pour vraiment comprendre mon contexte."</div>
+      <div class="pl">Apres ses questions</div>
+      <div class="pt">"Maintenant que tu connais ma situation, donne-moi ton diagnostic honnete. Qu'est-ce que tu vois que je ne vois probablement pas ? Quelle est la chose la plus importante sur laquelle je dois me concentrer ?"</div>
+      <div class="pl">Pour aller plus loin</div>
+      <div class="pt">"Quelles sont les 3 decisions les plus importantes que je dois prendre dans les 30 prochains jours ? Pour chacune, donne-moi le cadre de reflexion pour la prendre."</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Etape 4 &mdash; Tout ce que l'IA peut produire pour ton business</div>
+    <div class="ucgrid">
+      <div class="ucard"><div class="uico">&#128196;</div><div class="utitle">Business Plan</div><div class="udesc">Structure complete, resume executif, analyse marche, modele financier simple.</div></div>
+      <div class="ucard"><div class="uico">&#127908;</div><div class="utitle">Pitch Deck</div><div class="udesc">Plan de 10 slides, textes de chaque slide, script de presentation orale.</div></div>
+      <div class="ucard"><div class="uico">&#128202;</div><div class="utitle">Etudes de marche</div><div class="udesc">Syntheses sectorielles, analyse concurrentielle, profils clients.</div></div>
+      <div class="ucard"><div class="uico">&#128203;</div><div class="utitle">Processus &amp; SOP</div><div class="udesc">Procedures standardisees, checklists, guides internes pour ton equipe.</div></div>
+      <div class="ucard"><div class="uico">&#128140;</div><div class="utitle">Scripts de vente</div><div class="udesc">Scripts d'appel, sequences email, traitement des objections.</div></div>
+      <div class="ucard"><div class="uico">&#129309;</div><div class="utitle">Contrats &amp; CGV</div><div class="udesc">Templates de base (a faire valider par un juriste pour les versions finales).</div></div>
+      <div class="ucard"><div class="uico">&#127760;</div><div class="utitle">Site web &amp; Landing</div><div class="udesc">Textes, structure, copy de conversion, FAQ.</div></div>
+      <div class="ucard"><div class="uico">&#128226;</div><div class="utitle">Plan marketing</div><div class="udesc">Strategie, canaux, budget, KPIs, calendrier complet.</div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Quiz</div>
+    <div class="quiz" id="q4">
+      <div class="qq">Tu veux utiliser l'IA efficacement sur ton projet long terme. Quelle est la meilleure approche ?</div>
+      <div class="qops">
+        <div class="qop" onclick="ansQ('q4',0,1)"><div class="qlt">A</div>Repartir de zero a chaque conversation en reexpliquant ton projet</div>
+        <div class="qop" onclick="ansQ('q4',1,1)"><div class="qlt">B</div>Configurer les instructions permanentes avec ton contexte complet, utiliser des prompts strategiques cibles, et mener des conversations profondes regulierement</div>
+        <div class="qop" onclick="ansQ('q4',2,1)"><div class="qlt">C</div>N'utiliser l'IA que pour les petites taches operationnelles</div>
+      </div>
+      <div class="qfb" id="qf-q4"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Exercice cle &mdash; Configure ton co-fondateur IA</div>
+    <div class="ex">
+      <div class="exhd"><div class="exbdg">Exercice fondamental</div><h4>Redige tes instructions permanentes</h4></div>
+      <p>L'exercice le plus impactant du cours. Redige tes instructions permanentes completes ci-dessous. Une fois pret, colle-les dans ChatGPT (Custom Instructions) ET dans un Project Claude.</p>
+      <textarea placeholder="Je suis [prenom]... Mon projet est... Ma cible est... Mes contraintes sont... Mon objectif a 6 mois est... Quand tu me reponds, je veux que..."></textarea>
+      <div class="extip">Astuce : demande a l'IA de t'aider ! "Aide-moi a rediger mes instructions permanentes pour que tu m'aides sur mon business. Pose-moi toutes les questions necessaires." C'est meta mais ca marche tres bien.</div>
+    </div>
+  </div>
+
+  <div class="achieve"><div class="aico">&#128640;</div><div><h4>Co-fondateur IA active !</h4><p>Tu as tout ce qu'il faut pour utiliser l'IA comme un vrai partenaire strategique long terme.</p><span class="xpbdg">+300 XP</span></div></div>
+  <div class="lnav"><button class="lbtn" onclick="goL(3)">&larr; Precedent</button><button class="lbtn next" onclick="done(4)">Lecon suivante &rarr;</button></div>
+</div>
+
+<div class="lesson" id="lesson-5">
+  <div class="ltag ta">Module 3 &mdash; Avance</div>
+  <h1 class="ltitle">Techniques avancees :<br>le top 5% des utilisateurs</h1>
+  <p class="lintro">Ces techniques sont utilisees par 5% des gens et font une difference massive dans la qualite des resultats. Aucune n'est compliquee &mdash; elles demandent juste de changer legerement sa facon d'interagir avec l'IA.</p>
+  <div class="lmeta"><span>40 min</span><span>Avance</span><span>+250 XP</span></div>
+
+  <div class="block">
+    <div class="btitle">1. Le Few-Shot &mdash; Montre plutot qu'expliquer</div>
+    <div class="expl"><p>Au lieu de decrire le resultat que tu veux, <strong>montre-le directement</strong>. Donne 2-3 exemples et l'IA comprend instantanement le style, le ton, la structure. C'est la technique la plus efficace pour le contenu.</p></div>
+    <div class="pdemo">
+      <div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Few-Shot en pratique</div>
+      <div class="pl">Prompt</div>
+      <div class="pt">"Voici 2 posts qui ont bien performe sur mon compte :
+Post 1 : [ton texte]
+Post 2 : [ton texte]
+
+Sur EXACTEMENT ce modele (meme ton, meme structure, meme longueur), ecris 5 nouveaux posts sur ces sujets : [liste]."</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">2. La chaine de prompts &mdash; Decompose les taches complexes</div>
+    <div class="steps">
+      <div class="step"><div class="snum">1</div><div class="scon"><div class="stitl">Recherche</div><div class="sdesc">"Identifie les 5 plus grandes frustrations de [ta cible]"</div></div></div>
+      <div class="step"><div class="snum">2</div><div class="scon"><div class="stitl">Filtrage</div><div class="sdesc">"Laquelle est la plus urgente et la moins bien resolue ?"</div></div></div>
+      <div class="step"><div class="snum">3</div><div class="scon"><div class="stitl">Solution</div><div class="sdesc">"Propose 3 business pour resoudre ce probleme"</div></div></div>
+      <div class="step"><div class="snum">4</div><div class="scon"><div class="stitl">Amelioration</div><div class="sdesc">"Critique ta derniere reponse et ameliore-la"</div></div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">3. L'auto-critique &mdash; Demande a l'IA de s'ameliorer</div>
+    <div class="ib ipur">Apres chaque reponse importante, ajoute : "Prends du recul sur ta reponse. Qu'est-ce qui est trop vague ? Qu'est-ce qui manque ? Donne-moi une version V2 amelioree en tenant compte de ces lacunes."</div>
+    <div class="ib igrn">La V2 est presque toujours significativement meilleure. Cette technique est meconnue mais redoutablement efficace.</div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">4. Le mega-prompt &mdash; Tout en une fois</div>
+    <div class="pdemo">
+      <div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Template mega-prompt business</div>
+      <div class="pl">Structure</div>
+      <div class="pt">CONTEXTE : [qui tu es, ton projet, tes ressources]
+OBJECTIF : [ce que tu veux accomplir]
+CONTRAINTES : [ce que tu ne peux pas faire]
+LIVRABLES ATTENDUS :
+1. [livrable 1]
+2. [livrable 2]
+3. [livrable 3]
+FORMAT : [comment tu veux la reponse]
+TON : [quel ton]
+IMPORTANT : [ce qu'il ne faut pas faire]</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">5. Le role-stacking &mdash; Empiler plusieurs roles</div>
+    <div class="pdemo">
+      <div class="pdh"><span class="d1"></span><span class="d2"></span><span class="d3"></span> Role-stacking</div>
+      <div class="pt">"Tu es a la fois : expert en marketing digital avec 10 ans d'experience, entrepreneur qui a lance 3 business e-commerce, et psychologue du consommateur. Depuis cette triple perspective, analyse mon offre [description] et dis-moi comment la rendre irresistible."</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Quiz</div>
+    <div class="quiz" id="q5">
+      <div class="qq">Tu veux creer du contenu qui ressemble vraiment a ta facon d'ecrire. Quelle technique est la plus efficace ?</div>
+      <div class="qops">
+        <div class="qop" onclick="ansQ('q5',0,1)"><div class="qlt">A</div>Decrire ton style tres precisement dans le prompt</div>
+        <div class="qop" onclick="ansQ('q5',1,1)"><div class="qlt">B</div>Donner 2-3 exemples de tes meilleurs contenus existants (Few-Shot) et demander a l'IA de reproduire ce style</div>
+        <div class="qop" onclick="ansQ('q5',2,1)"><div class="qlt">C</div>Demander a l'IA de choisir un style pour toi</div>
+      </div>
+      <div class="qfb" id="qf-q5"></div>
+    </div>
+  </div>
+
+  <div class="achieve"><div class="aico">&#9889;</div><div><h4>Top 5% debloque !</h4><p>Tu maitrises les techniques avancees. Tu obtiens des resultats professionnels en quelques minutes.</p><span class="xpbdg">+250 XP</span></div></div>
+  <div class="lnav"><button class="lbtn" onclick="goL(4)">&larr; Precedent</button><button class="lbtn next" onclick="done(5)">Lecon suivante &rarr;</button></div>
+</div>
+
+<div class="lesson" id="lesson-6">
+  <div class="ltag to">Module 4 &mdash; Panorama</div>
+  <h1 class="ltitle">Toutes les IA du moment :<br>comparatif complet 2025-2026</h1>
+  <p class="lintro">L'ecosysteme IA evolue vite. Voici un panorama complet et honnete de toutes les IA majeures &mdash; leurs forces reelles, leurs limites, et surtout quand les utiliser pour ton business.</p>
+  <div class="lmeta"><span>35 min</span><span>Panorama</span><span>+200 XP</span></div>
+
+  <div class="block">
+    <div class="btitle">Les grandes IA &mdash; Fiches detaillees</div>
+    <div class="aigrid">
+
+      <div class="aicard">
+        <div class="aihd">
+          <div class="ailogo" style="background:linear-gradient(135deg,#10a37f,#1a7f64);font-size:13px;">GPT</div>
+          <div><div class="ainame">ChatGPT</div><div class="aimkr">OpenAI &mdash; USA</div></div>
+        </div>
+        <div class="aidesc">Le pionnier. L'IA la plus connue et la plus utilisee. Excellent generaliste avec un ecosysteme riche de plugins et GPTs personnalises.</div>
+        <div class="aibst abg">Ideal pour : creativite, images, GPTs custom, analyse data</div>
+        <div class="aibst abo">Correct pour : redaction, strategie, code</div>
+        <div class="aitags"><span class="aitag">GPT-4o</span><span class="aitag">Images DALL-E</span><span class="aitag">GPTs</span><span class="aitag">Web</span></div>
+        <div class="aiprice">Gratuit (limite) &middot; 20$/mois (Plus)</div>
+        <a href="https://chat.openai.com" target="_blank" class="ailink">&rarr; chat.openai.com</a>
+      </div>
+
+      <div class="aicard">
+        <div class="aihd">
+          <div class="ailogo" style="background:linear-gradient(135deg,#CC785C,#a0522d);font-size:13px;">Cl</div>
+          <div><div class="ainame">Claude</div><div class="aimkr">Anthropic &mdash; USA</div></div>
+        </div>
+        <div class="aidesc">Le plus precis et nuance. Suit les instructions a la lettre, honnete sur ses incertitudes, excellent sur les longs documents. Le prefere pour le travail serieux.</div>
+        <div class="aibst abg">Ideal pour : analyse, redaction precise, longs docs, strategie</div>
+        <div class="aibst abo">Correct pour : creativite, code</div>
+        <div class="aitags"><span class="aitag">Claude Sonnet</span><span class="aitag">Projects</span><span class="aitag">200K tokens</span></div>
+        <div class="aiprice">Gratuit (limite) &middot; 20$/mois (Pro)</div>
+        <a href="https://claude.ai" target="_blank" class="ailink">&rarr; claude.ai</a>
+      </div>
+
+      <div class="aicard">
+        <div class="aihd">
+          <div class="ailogo" style="background:linear-gradient(135deg,#4285F4,#34A853);font-size:13px;">G</div>
+          <div><div class="ainame">Gemini</div><div class="aimkr">Google &mdash; USA</div></div>
+        </div>
+        <div class="aidesc">L'IA de Google. Integre a Gmail, Docs, Sheets. Parfait si tu travailles dans l'ecosysteme Google. Fort sur la recherche avec sources citees.</div>
+        <div class="aibst abg">Ideal pour : Google Workspace, recherche sourcee</div>
+        <div class="aibst abo">Correct pour : redaction, analyse, multimodal</div>
+        <div class="aitags"><span class="aitag">Gemini 2.0</span><span class="aitag">Google Docs</span><span class="aitag">Gmail</span><span class="aitag">Sources</span></div>
+        <div class="aiprice">Gratuit &middot; Gemini Advanced 22EUR/mois</div>
+        <a href="https://gemini.google.com" target="_blank" class="ailink">&rarr; gemini.google.com</a>
+      </div>
+
+      <div class="aicard">
+        <div class="aihd">
+          <div class="ailogo" style="background:linear-gradient(135deg,#1DA1F2,#0d47a1);font-size:12px;">Grok</div>
+          <div><div class="ainame">Grok</div><div class="aimkr">xAI (Elon Musk) &mdash; USA</div></div>
+        </div>
+        <div class="aidesc">L'IA de X (Twitter). Acces en temps reel aux tweets et tendances. Ton plus direct et parfois provocateur. Bon pour comprendre ce qui se passe sur les reseaux.</div>
+        <div class="aibst abg">Ideal pour : tendances Twitter, veille reseaux, ton decale</div>
+        <div class="aibst abn">Eviter pour : travail serieux et precis</div>
+        <div class="aitags"><span class="aitag">Grok 3</span><span class="aitag">Temps reel X</span><span class="aitag">Tendances</span></div>
+        <div class="aiprice">Gratuit (limite) &middot; Premium X requis</div>
+        <a href="https://x.com/grok" target="_blank" class="ailink">&rarr; x.com/grok</a>
+      </div>
+
+      <div class="aicard">
+        <div class="aihd">
+          <div class="ailogo" style="background:linear-gradient(135deg,#0668E1,#00C6FF);font-size:12px;">Meta</div>
+          <div><div class="ainame">Meta AI (Llama)</div><div class="aimkr">Meta &mdash; USA</div></div>
+        </div>
+        <div class="aidesc">L'IA de Meta. Integree dans WhatsApp, Instagram, Facebook. Llama est open-source &mdash; des milliers d'outils sont construits dessus.</div>
+        <div class="aibst abg">Ideal pour : dans WhatsApp/Instagram, use cases open-source</div>
+        <div class="aibst abo">Correct pour : questions rapides du quotidien</div>
+        <div class="aitags"><span class="aitag">Llama 4</span><span class="aitag">WhatsApp</span><span class="aitag">Open-source</span></div>
+        <div class="aiprice">Gratuit</div>
+        <a href="https://meta.ai" target="_blank" class="ailink">&rarr; meta.ai</a>
+      </div>
+
+      <div class="aicard">
+        <div class="aihd">
+          <div class="ailogo" style="background:linear-gradient(135deg,#FF7000,#cc5500);font-size:11px;">Mist</div>
+          <div><div class="ainame">Mistral &mdash; Le Chat</div><div class="aimkr">Mistral AI &mdash; France</div></div>
+        </div>
+        <div class="aidesc">L'IA francaise. Hebergement europeen, RGPD-friendly. Excellente en francais. Bonne alternative si tu as des contraintes de confidentialite des donnees.</div>
+        <div class="aibst abg">Ideal pour : donnees confidentielles, francais, entreprises FR/EU</div>
+        <div class="aibst abo">Correct pour : redaction, code, analyse</div>
+        <div class="aitags"><span class="aitag">Mistral Large</span><span class="aitag">RGPD</span><span class="aitag">FR/EU</span></div>
+        <div class="aiprice">Gratuit &middot; Pro 15EUR/mois</div>
+        <a href="https://chat.mistral.ai" target="_blank" class="ailink">&rarr; chat.mistral.ai</a>
+      </div>
+
+      <div class="aicard">
+        <div class="aihd">
+          <div class="ailogo" style="background:linear-gradient(135deg,#6E57E0,#4a3ab0);font-size:11px;">Perp</div>
+          <div><div class="ainame">Perplexity</div><div class="aimkr">Perplexity AI &mdash; USA</div></div>
+        </div>
+        <div class="aidesc">Le moteur de recherche IA. Chaque reponse est sourcee et verifiable. Parfait pour remplacer Google sur des questions complexes et verifier des infos IA douteuses.</div>
+        <div class="aibst abg">Ideal pour : recherche, veille, verification de faits</div>
+        <div class="aibst abn">Pas pour : creation de contenu, brainstorming</div>
+        <div class="aitags"><span class="aitag">Sources citees</span><span class="aitag">Temps reel</span><span class="aitag">Verification</span></div>
+        <div class="aiprice">Gratuit &middot; Pro 20$/mois</div>
+        <a href="https://perplexity.ai" target="_blank" class="ailink">&rarr; perplexity.ai</a>
+      </div>
+
+      <div class="aicard">
+        <div class="aihd">
+          <div class="ailogo" style="background:linear-gradient(135deg,#0078d4,#005ea2);font-size:13px;">Co</div>
+          <div><div class="ainame">Copilot</div><div class="aimkr">Microsoft &mdash; USA</div></div>
+        </div>
+        <div class="aidesc">L'IA de Microsoft. Integree dans Word, Excel, PowerPoint, Teams. Indispensable si ton environnement pro est Microsoft 365.</div>
+        <div class="aibst abg">Ideal pour : Office 365, reunions Teams, Excel</div>
+        <div class="aibst abn">Pas la peine si tu n'utilises pas Microsoft</div>
+        <div class="aitags"><span class="aitag">Word</span><span class="aitag">Excel</span><span class="aitag">Teams</span><span class="aitag">PowerPoint</span></div>
+        <div class="aiprice">Gratuit (basique) &middot; Microsoft 365 requis (complet)</div>
+        <a href="https://copilot.microsoft.com" target="_blank" class="ailink">&rarr; copilot.microsoft.com</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Tableau comparatif &mdash; Quoi utiliser quand</div>
+    <div style="overflow-x:auto;">
+      <table class="ctable">
+        <tr><th>Tache</th><th>Meilleur choix</th><th>Alternative</th><th>Eviter</th></tr>
+        <tr><td>Brainstorming business</td><td class="tdg">ChatGPT / Claude</td><td class="tdo">Gemini</td><td class="tdr">Perplexity</td></tr>
+        <tr><td>Analyser un long document</td><td class="tdg">Claude</td><td class="tdo">ChatGPT</td><td class="tdr">Grok</td></tr>
+        <tr><td>Generer des images</td><td class="tdg">ChatGPT (DALL-E)</td><td class="tdo">Midjourney</td><td class="tdr">Claude</td></tr>
+        <tr><td>Recherche avec sources</td><td class="tdg">Perplexity</td><td class="tdo">Gemini</td><td class="tdr">ChatGPT seul</td></tr>
+        <tr><td>Redaction precise</td><td class="tdg">Claude</td><td class="tdo">ChatGPT</td><td class="tdr">Grok</td></tr>
+        <tr><td>Google Workspace</td><td class="tdg">Gemini</td><td class="tdo">ChatGPT</td><td class="tdr">&mdash;</td></tr>
+        <tr><td>Donnees confidentielles</td><td class="tdg">Mistral</td><td class="tdo">Claude</td><td class="tdr">ChatGPT</td></tr>
+        <tr><td>Tendances reseaux sociaux</td><td class="tdg">Grok</td><td class="tdo">Perplexity</td><td class="tdr">&mdash;</td></tr>
+        <tr><td>Excel / Word</td><td class="tdg">Copilot</td><td class="tdo">ChatGPT</td><td class="tdr">&mdash;</td></tr>
+        <tr><td>Dans WhatsApp</td><td class="tdg">Meta AI</td><td class="tdo">&mdash;</td><td class="tdr">&mdash;</td></tr>
+        <tr><td>Strategie long terme</td><td class="tdg">Claude</td><td class="tdo">ChatGPT</td><td class="tdr">&mdash;</td></tr>
+        <tr><td>Code et developpement</td><td class="tdg">ChatGPT / Claude</td><td class="tdo">Gemini</td><td class="tdr">Grok</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">IA specialisees a connaitre</div>
+    <div class="ucgrid">
+      <div class="ucard"><div class="uico">&#127912;</div><div class="utitle">Midjourney</div><div class="udesc">Meilleure qualite d'images artistiques. Pour la creation visuelle pro. ~10$/mois.</div></div>
+      <div class="ucard"><div class="uico">&#127909;</div><div class="utitle">Runway / Sora</div><div class="udesc">Generation de videos IA. Pour creer du contenu video a partir de texte ou d'images.</div></div>
+      <div class="ucard"><div class="uico">&#127908;</div><div class="utitle">ElevenLabs</div><div class="udesc">Voix IA ultra-realistes. Pour podcasts, videos, contenus audio.</div></div>
+      <div class="ucard"><div class="uico">&#128202;</div><div class="utitle">NotebookLM</div><div class="udesc">Google. Analyse tes propres documents. Genere meme des podcasts audio resumes.</div></div>
+      <div class="ucard"><div class="uico">&#128260;</div><div class="utitle">Make / n8n</div><div class="udesc">Automatisation no-code. Connecte tes IA a tes outils : Gmail, Notion, agenda...</div></div>
+      <div class="ucard"><div class="uico">&#127912;</div><div class="utitle">Canva AI</div><div class="udesc">Design assiste par IA. Visuels, presentations, posts. Sans competence graphique.</div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Ma recommandation pour debuter</div>
+    <div class="ib iblu"><strong>Semaine 1-4 :</strong> Utilise uniquement ChatGPT et Claude. Maitrise ces deux-la avant d'ajouter d'autres outils. La dispersion est l'ennemi de l'apprentissage.</div>
+    <div class="ib igrn"><strong>Semaine 5+ :</strong> Ajoute Perplexity pour la recherche et Gemini si tu utilises Google Workspace. C'est le trio parfait pour 90% des besoins business.</div>
+    <div class="ib iorg"><strong>Regle d'or :</strong> Le meilleur outil IA est celui que tu utilises vraiment &mdash; pas celui qui semble le plus impressionnant sur le papier.</div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Quiz final</div>
+    <div class="quiz" id="q6">
+      <div class="qq">Tu as des donnees confidentielles de tes clients et tu veux utiliser l'IA pour les analyser. Quelle IA est la plus adaptee ?</div>
+      <div class="qops">
+        <div class="qop" onclick="ansQ('q6',0,1)"><div class="qlt">A</div>ChatGPT &mdash; c'est le plus connu donc le plus securise</div>
+        <div class="qop" onclick="ansQ('q6',1,1)"><div class="qlt">B</div>Mistral &mdash; hebergement europeen, RGPD-friendly, concu pour les donnees sensibles</div>
+        <div class="qop" onclick="ansQ('q6',2,1)"><div class="qlt">C</div>Grok &mdash; c'est le plus recent donc le plus avance</div>
+      </div>
+      <div class="qfb" id="qf-q6"></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="btitle">Pour aller plus loin</div>
+    <a href="https://www.youtube.com/@LudoSalenne" target="_blank" class="vcard">
+      <div class="vth">&#9654;&#65039;</div>
+      <div class="vin"><div class="vtag">YouTube &middot; FR &middot; Gratuit</div><div class="vtitle">Ludo Salenne &mdash; Comparatif des meilleures IA 2025-2026</div><div class="vmeta">Tour d'horizon pratique &middot; Mis a jour regulierement</div></div>
+    </a>
+    <a href="https://www.youtube.com/@DefendIntelligence-IA" target="_blank" class="vcard">
+      <div class="vth">&#129504;</div>
+      <div class="vin"><div class="vtag">YouTube &middot; FR &middot; Gratuit</div><div class="vtitle">Defend Intelligence &mdash; Actualite IA et comparatifs</div><div class="vmeta">Analyse objective des nouveaux modeles</div></div>
+    </a>
+  </div>
+
+  <div class="achieve"><div class="aico">&#127942;</div><div><h4>Cours termine !</h4><p>Tu maitrises maintenant tout l'ecosysteme IA. Tu sais quoi utiliser, quand, et pourquoi.</p><span class="xpbdg">+200 XP</span></div></div>
+  <div class="lnav">
+    <button class="lbtn" onclick="goL(5)">&larr; Precedent</button>
+    <button class="donebtn" onclick="done(6)">Terminer le cours !</button>
+  </div>
+</div>
+
+<div id="done">
+  <div style="font-size:80px;margin-bottom:20px;">&#127942;</div>
+  <h2 style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin-bottom:10px;">Felicitations !</h2>
+  <p style="font-size:15px;color:var(--i2);margin-bottom:8px;line-height:1.7;">Tu as termine le cours complet. Tu sais maintenant utiliser l'IA comme un vrai partenaire business &mdash; brainstormer, valider des idees, creer une strategie long terme, et choisir le bon outil selon la tache.</p>
+  <p style="font-size:14px;color:var(--i3);margin-bottom:28px;">La prochaine etape : ouvre ChatGPT ou Claude, configure tes instructions permanentes avec TON contexte, et commence ta premiere vraie session strategique.</p>
+  <button class="donebtn" onclick="goL(0)" style="margin-top:8px;">Revoir le cours</button>
+</div>
+</main>
+</div>
+
+<div class="toast" id="toast"><span id="ti">&#x26A1;</span>&nbsp;<span id="tm">Bravo !</span></div>
+<script>
+const LS=[
+  {t:"Comprendre l'IA sans le blabla",m:"Module 1 &mdash; Fondations",xp:100},
+  {t:"Creer un bon prompt : theorie complete",m:"Module 1 &mdash; Fondations",xp:150},
+  {t:"Tout ce qu'on peut faire avec l'IA",m:"Module 1 &mdash; Fondations",xp:150},
+  {t:"L'IA pour brainstormer : guide complet",m:"Module 2 &mdash; Business",xp:200},
+  {t:"L'IA co-fondateur : guide long terme",m:"Module 2 &mdash; Business",xp:300},
+  {t:"Techniques avancees &mdash; top 5%",m:"Module 3 &mdash; Avance",xp:250},
+  {t:"Panorama complet des IA 2025-2026",m:"Module 4 &mdash; Panorama",xp:200}
+];
+const IC=["&#129504;","&#9999;&#65039;","&#128506;","&#128161;","&#128640;","&#9889;","&#127760;"];
+let S=JSON.parse(localStorage.getItem("iac3")||'{"d":[],"xp":0,"c":0}');
+function sv(){localStorage.setItem("iac3",JSON.stringify(S));}
+
+function buildNav(){
+  const n=document.getElementById("snv");let h="",lm="";
+  LS.forEach((l,i)=>{
+    if(l.m!==lm){h+=`<div class="smt">${l.m}</div>`;lm=l.m;}
+    const d=S.d.includes(i),a=S.c===i,lk=i>0&&!S.d.includes(i-1)&&!d;
+    h+=`<div class="sls ${a?"active":""} ${d?"done":""}" onclick="${lk?'toast2("&#x1F512;","Termine la lecon precedente !")':"goL("+i+")"}">
+      <span style="font-size:14px;flex-shrink:0;">${d?"&#9989;":IC[i]}</span><span>${l.t}</span>
+    </div>`;
+  });
+  n.innerHTML=h;
+}
+
+function updP(){
+  const p=Math.round(S.d.length/LS.length*100);
+  document.getElementById("pbar").style.width=p+"%";
+  document.getElementById("pct").textContent=p+"%";
+  document.getElementById("xpd").textContent=S.xp+" XP";
+}
+
+function goL(i){
+  document.querySelectorAll(".lesson").forEach(l=>l.classList.remove("active"));
+  document.getElementById("done").classList.remove("active");
+  const el=document.getElementById("lesson-"+i);
+  if(el){el.classList.add("active");window.scrollTo(0,0);}
+  S.c=i;sv();buildNav();
+  document.getElementById("bc").innerHTML=LS[i].m+" &middot; <span>"+LS[i].t+"</span>";
+  closeSidebar();
+}
+
+function done(i){
+  if(!S.d.includes(i)){S.d.push(i);S.xp+=LS[i].xp;toast2("&#x26A1;","+"+LS[i].xp+" XP !");}
+  sv();updP();
+  if(i<LS.length-1){setTimeout(()=>goL(i+1),500);}
+  else{document.querySelectorAll(".lesson").forEach(l=>l.classList.remove("active"));document.getElementById("done").classList.add("active");window.scrollTo(0,0);buildNav();}
+}
+
+function ansQ(id,ch,cor){
+  const q=document.getElementById(id);
+  if(q.classList.contains("qdn"))return;
+  q.classList.add("qdn");
+  const opts=q.querySelectorAll(".qop");
+  const fb=document.getElementById("qf-"+id);
+  opts[ch].classList.add(ch===cor?"correct":"wrong");
+  if(ch!==cor)opts[cor].classList.add("correct");
+  fb.className="qfb "+(ch===cor?"correct":"wrong");
+  fb.textContent=ch===cor?"Exactement ! Bonne reponse.":"Pas tout a fait &mdash; regarde la reponse correcte en vert.";
+  fb.style.display="block";
+  opts.forEach(o=>{o.style.pointerEvents="none";o.classList.add("qdn");});
+  if(ch===cor)toast2("&#127919;","Bonne reponse !");
+}
+
+function bld(){
+  const r=document.getElementById("br")?.value||"";
+  const c=document.getElementById("bc2")?.value||"[ton contexte ici]";
+  const t=document.getElementById("bt")?.value||"";
+  const f=document.getElementById("bf")?.value||"";
+  const o=document.getElementById("bout");
+  if(o)o.textContent=r+".\n\nContexte : "+c+".\n\n"+t+".\n\n"+f;
+}
+
+function showTab(e,group,id){
+  document.querySelectorAll("[id^=\""+group+"\"]").forEach(el=>el.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  e.target.closest(".tabs").querySelectorAll(".tbtn").forEach(b=>b.classList.remove("active"));
+  e.target.classList.add("active");
+}
+
+function toast2(icon,msg){
+  document.getElementById("ti").innerHTML=icon;
+  document.getElementById("tm").textContent=msg;
+  const t=document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),3000);
+}
+
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+}
+function closeSidebar(){
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+}
+function resetP(){
+  if(confirm("Reinitialiser toute la progression ?")){
+    S={d:[],xp:0,c:0};sv();buildNav();updP();goL(0);toast2("&#8635;","Progression reinitialisee");
+  }
+}
+function startCourse(){
+  document.getElementById("splash").classList.add("hide");
+  setTimeout(()=>document.getElementById("splash").style.display="none",700);
+}
+buildNav();updP();bld();
+if(S.c>0)goL(S.c);
+</script>
+</body>
+</html>
